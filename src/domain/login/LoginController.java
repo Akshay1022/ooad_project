@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
 
 /**
  * Servlet implementation class Login
@@ -25,6 +27,17 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("password");
 		String submitType = request.getParameter("submit");
+		
+		if(username.equals("root") && pass.equals("akshay")){
+			HttpSession session = request.getSession();
+			session.setAttribute("user", "root");
+			//setting session to expiry in 30 mins
+			session.setMaxInactiveInterval(30*60);
+			Cookie userName = new Cookie("user", username);
+			userName.setMaxAge(30*60);
+			response.addCookie(userName);
+			response.sendRedirect("admin.jsp");
+		}else{
 		Login login = new Login(username, pass);
 		Customer c = customerDao.validateCustomer(login);
 		
@@ -43,6 +56,8 @@ public class LoginController extends HttpServlet {
 			request.getRequestDispatcher("register.jsp").forward(request, response);
 		}
 
+	}
+	
 	}
 
 }

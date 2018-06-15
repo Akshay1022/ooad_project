@@ -5,10 +5,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>logout page</title>
+<% 
+
+		
+	//	Cookie ck = new Cookie("logout","yes");
+	//	response.addCookie(ck);
+		session.invalidate();
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		response.setHeader("Expires", "0");
+		response.setHeader("Vary", "*");
+		
+%>
 </head>
 <body>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+       clear();
+    </script>
 <%
-	session.invalidate();
+	
+	
+
+	
 	response.sendRedirect("login.jsp");
 %>
 

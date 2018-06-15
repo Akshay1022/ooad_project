@@ -44,3 +44,7 @@ function loginValidate(){
         return false;
     }
 }
+
+function clear(){
+	window.localStorage.clear();
+}

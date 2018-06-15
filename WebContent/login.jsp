@@ -8,11 +8,23 @@
 <script type="text/javascript" src="script.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
+<% 
+
+		session.invalidate();
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		response.setHeader("Expires", "0");
+		response.setHeader("Vary", "*");
+%>
 </head>
 <body>
 	<%out.print("Hello!"); %>
 	<%= new java.util.Date() %>
-	
+	<%
+   response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0"); 
+   response.addHeader("Pragma", "no-cache"); 
+   response.addDateHeader ("Expires", 0);
+ 	%>
 	
 	<%! int number1, number2; %>
 	
@@ -39,5 +51,6 @@
 	<a href="register.jsp">registration</a>
 	
 	</form>
+	
 </body>
 </html>
