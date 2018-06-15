@@ -33,8 +33,14 @@ User=<%=user %>
 	<br>
 		
 	
-	Event title: <input type="text" name="title" id="title"><br>
+	Event topic: <input type="text" name="title" id="title"><br>
+	Type: <input type="text" name="type" id="type"><br>
+	Date: <input type="date" pattern="yyyy/MM/dd" name="date" id="date"><br>
+	Location: <input type="text" name="loc" id="loc"><br>
+	Price: <input type="text" name="price" id="price"><br>
+	EventTime: <input type="text" name="time" id="time"><br>
 	Description: <input type="text" name="desc" id="desc"><br>
+	
 	<input type="submit" name="submit" value="add_event"><br>
 	
 	

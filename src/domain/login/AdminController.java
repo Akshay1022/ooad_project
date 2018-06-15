@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import db.DbManager;
 
@@ -41,10 +43,23 @@ public class AdminController extends HttpServlet{
 		
     if(submitType.equals("add_event")){
     	
-    	AdminEvents ae = new AdminEvents(request.getParameter("title"),request.getParameter("desc"));
-    	addEvents(ae);
+    	EventDao eventModifier = new EventsDaoImp();
+    	
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+    	java.util.Date date;
+		try {
+			date = sdf1.parse(request.getParameter("date"));
+		
+    	java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+    	Event eventobject = new Event(0,request.getParameter("title"),request.getParameter("type"),sqlStartDate,request.getParameter("loc"),Float.parseFloat(request.getParameter("price")),request.getParameter("time"),request.getParameter("desc") );
+    	eventModifier.addEvent(eventobject);
+    //	addEvents(ae);
     //	request.getRequestDispatcher("admin.jsp");
     	response.sendRedirect("admin.jsp");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
     
@@ -56,38 +71,6 @@ public class AdminController extends HttpServlet{
     
     }
     
-    public int addEvents(AdminEvents ae)
-    {
-    	int status = 0;
-    	
-		try{
-			conn = db.getConnection();
-			String query = "SELECT MAX(id) AS `maxid` FROM events";
-			Statement st = conn.createStatement(); 
-		    ResultSet rs = st.executeQuery(query);
-		    int maxid=0;
-		    while (rs.next())
-		      {
-		        maxid = rs.getInt("maxid");
-		      }
-		    
-		    
-			
-			ps =conn.prepareStatement("insert into events values(?,?,?)");
-	//		ps =conn.prepareStatement("INSERT INTO events (title, desc, id) VALUES (?, ?, ?)");
-			ps.setString(1, ae.gettitle());
-			ps.setString(2, ae.getdesc());
-			ps.setInt(3, maxid+1);
-			
-			
-			status = ps.executeUpdate();
-			conn.close();
-		}catch(Exception e){
-			System.out.println(e);
-		}
-	
-		return status;
-    	
-    }
+    
 
 }
