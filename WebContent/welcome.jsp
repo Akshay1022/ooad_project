@@ -133,7 +133,11 @@ alert(type.value);
              
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#"><c:out value="${event.topic}" /></a>
+                    <!-- <a href="#"><c:out value="${event.topic}" /></a> -->
+                     <a href="<c:url value="DetailsController">
+            			<c:param name="topic" value="${event.topic}"/>
+        				</c:url>"><c:out value="${event.topic}" /></a>
+                    
                   </h4>
                   <h5><c:out value="${event.price}" /></h5>
                   <p class="card-text"><c:out value="${event.eventDate}" /></p>

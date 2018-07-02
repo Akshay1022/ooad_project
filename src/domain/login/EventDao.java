@@ -8,5 +8,7 @@ public interface EventDao {
 	public List<Event> getCurrentEvents();
 	
 	public int addEvent(Event event);
+	
+	public Event getRequiredEvent(String eventTopic);
 
 }

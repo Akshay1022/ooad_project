@@ -15,13 +15,17 @@ public class EventsDaoImp implements EventDao{
 	static PreparedStatement ps;
 	DbManager db = new DbManager();
 	
+	EventsDaoImp(){
+		conn = db.getConnection();
+	}
+	
 	@Override
 	public List<Event> getCurrentEvents() {
 		// TODO Auto-generated method stub
 		List<Event> listCurrentEvents = new ArrayList<>();
 		
 		try{
-			conn = db.getConnection();
+			//conn = db.getConnection();
 			ps =conn.prepareStatement("select * from Events");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -40,7 +44,7 @@ public class EventsDaoImp implements EventDao{
 	    	int status = 0;
 	    	
 			try{
-				conn = db.getConnection();
+				//conn = db.getConnection();
 				String query = "SELECT MAX(EventId) AS `maxid` FROM events";
 				Statement st = conn.createStatement(); 
 			    ResultSet rs = st.executeQuery(query);
@@ -72,6 +76,24 @@ public class EventsDaoImp implements EventDao{
 			return status;
 	    	
 	    }
+
+	@Override
+	public Event getRequiredEvent(String eventTopic) {
+		try{
+			ps =conn.prepareStatement("select * from Events where Topic = ?");
+			ps.setString(1, eventTopic);
+			ResultSet rs = ps.executeQuery();
+			Event event = null;
+			while(rs.next()){
+				event = new Event(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getFloat(6),rs.getString(7),rs.getString(8));
+			}
+			return event;
+		}catch(Exception e){
+			System.out.println(e);
+			return null;
+		}
+		
+	}
 		
 	}
 
