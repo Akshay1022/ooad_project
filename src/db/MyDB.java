@@ -10,9 +10,9 @@ package db;
 public interface MyDB {
 
 	String USER="root";
-	String PASS="";
-	String CONN_URL="jdbc:mysql://127.0.0.1:3306/project";
-	
+	String PASS="sharv2004";
+	String CONN_URL="jdbc:mysql://127.0.0.1:3306/project?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
 	
 }
 /**

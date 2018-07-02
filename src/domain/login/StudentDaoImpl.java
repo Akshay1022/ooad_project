@@ -21,7 +21,7 @@ public class StudentDaoImpl implements StudentDao {
 		Student student = new Student();
 		try{
 			conn = db.getConnection();
-			ps =conn.prepareStatement("select * from student where Email=? and UserPassword=?");
+			ps =conn.prepareStatement("select * from Student where Email=? and UserPassword=?");
 			ps.setString(1, login.getUsername());
 			ps.setString(2, login.getPassword());
 
