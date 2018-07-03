@@ -1,6 +1,7 @@
 package domain.login;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,9 @@ public class DetailsController extends HttpServlet{
 		
 		Event requiredEvent = eventDetails.getRequiredEvent(eventTopic);
 		
-		request.setAttribute("eventDetails", requiredEvent);
+		String selectedEventId = UUID.randomUUID().toString();
+		request.getSession().setAttribute(selectedEventId, requiredEvent);
+		request.setAttribute("selectedEventId", requiredEvent);
 		request.getRequestDispatcher("event_details.jsp").forward(request, response);
 	}
 	

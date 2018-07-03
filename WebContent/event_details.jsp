@@ -56,7 +56,7 @@ alert(type.value);
               <a class="nav-link" href="#">My Reservations</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cart</a>
+              <a class="nav-link" href="cart.jsp">Cart</a>
             </li>
             <li class="nav-item">
               	<a class="nav-link" href="logout.jsp">logout</a>
@@ -66,49 +66,61 @@ alert(type.value);
       </div>
     </nav>
     
-    
-    <table> <thead>
-      <tr>
-        <th>EventId</th>
-        <th>Topic</th>
-        <th>EventType</th>
-        <th>EventDate</th>
-        <th>Location</th>
-        <th>Price</th>
-        <th>EventTime</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>${eventDetails.eventId}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.topic}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.eventType}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.eventDate}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.location}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.price}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.eventTime}</td>
-      </tr>
-      <tr>
-        <td>${eventDetails.description}</td>
-      </tr>
-  </tbody>
-</table>
-    
-    
-    
+    <table>
+			<thead>
+				<tr>
+					<th>EventId</th>
+					<th>Topic</th>
+					<th>EventType</th>
+					<th>EventDate</th>
+					<th>Location</th>
+					<th>Price</th>
+					<th>EventTime</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${selectedEventId.eventId}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.topic}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.eventType}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.eventDate}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.location}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.price}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.eventTime}</td>
+				</tr>
+				<tr>
+					<td>${selectedEventId.description}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	<form name="selectedEvent" action="CartController" method="post" onSubmit="">
+
+	<input type="hidden" name="eventId" value="${selectedEventId.eventId}">
+	<input type="hidden" name="topic" value="${selectedEventId.topic}">
+	<input type="hidden" name="eventType" value="${selectedEventId.eventType}">
+	<input type="hidden" name="eventDate" value="${selectedEventId.eventDate}">
+	<input type="hidden" name="location" value="${selectedEventId.location}">
+	<input type="hidden" name="price" value="${selectedEventId.price}">
+	<input type="hidden" name="eventTime" value="${selectedEventId.eventTime}">
+	<input type="hidden" name="description" value="${selectedEventId.description}">
+	<input type="submit" value="Add to cart" name="Add to cart">
+	</form>
+
+
 	<!-- Footer -->
     <footer class="py-5 bg-dark fixed-bottom">
       <div class="container">
@@ -124,3 +136,45 @@ alert(type.value);
 
 </body>
 </html>
+
+
+<!-- <table>
+			<thead>
+				<tr>
+					<th>EventId</th>
+					<th>Topic</th>
+					<th>EventType</th>
+					<th>EventDate</th>
+					<th>Location</th>
+					<th>Price</th>
+					<th>EventTime</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${eventDetails.eventId}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.topic}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.eventType}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.eventDate}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.location}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.price}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.eventTime}</td>
+				</tr>
+				<tr>
+					<td>${eventDetails.description}</td>
+				</tr>
+			</tbody>
+		</table> -->
