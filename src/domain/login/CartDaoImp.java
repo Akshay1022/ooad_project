@@ -5,7 +5,11 @@ import java.util.List;
 
 public class CartDaoImp implements CartDao{
 	
-	Cart cart = new Cart();
+	Cart cart;
+	
+	public CartDaoImp(Cart cart){
+		this.cart = cart;
+	}
 	
 
 	@Override

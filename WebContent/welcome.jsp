@@ -48,15 +48,17 @@ alert(type.value);
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="<c:url value="LoginController">
+              <c:param name="mode" value="fetch"/>
+        				</c:url>">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">My Reservations</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cart.jsp">Cart</a>
+              <a class="nav-link" href="<c:url value="CartController">
+              <c:param name="mode" value="fetch"/>
+        				</c:url>">Cart</a>
             </li>
             <li class="nav-item">
               	<a class="nav-link" href="logout.jsp">logout</a>

@@ -17,9 +17,26 @@ import javax.servlet.http.Cookie;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	StudentDao studentDao;
+	EventDao eventsDao;
        
 
-    public LoginController() {}
+    public LoginController() {
+    	 studentDao = new StudentDaoImpl();
+    	 eventsDao = new EventsDaoImp();
+    }
+    
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String mode = request.getParameter("mode");
+		if(mode.equals("fetch")){
+			List<Event> fetchedEvents = eventsDao.getCurrentEvents();
+			request.setAttribute("events", fetchedEvents);
+			request.getRequestDispatcher("welcome.jsp").forward(request, response);
+		}
+		
+		}
     
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -16,7 +16,7 @@ public class EventsDaoImp implements EventDao{
 	DbManager db = new DbManager();
 	
 	EventsDaoImp(){
-		conn = db.getConnection();
+		//conn = db.getConnection();
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class EventsDaoImp implements EventDao{
 		List<Event> listCurrentEvents = new ArrayList<>();
 		
 		try{
-			//conn = db.getConnection();
+			conn = db.getConnection();
 			ps =conn.prepareStatement("select * from Events");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -44,7 +44,7 @@ public class EventsDaoImp implements EventDao{
 	    	int status = 0;
 	    	
 			try{
-				//conn = db.getConnection();
+				conn = db.getConnection();
 				String query = "SELECT MAX(EventId) AS `maxid` FROM events";
 				Statement st = conn.createStatement(); 
 			    ResultSet rs = st.executeQuery(query);
@@ -80,6 +80,7 @@ public class EventsDaoImp implements EventDao{
 	@Override
 	public Event getRequiredEvent(String eventTopic) {
 		try{
+			conn = db.getConnection();
 			ps =conn.prepareStatement("select * from Events where Topic = ?");
 			ps.setString(1, eventTopic);
 			ResultSet rs = ps.executeQuery();

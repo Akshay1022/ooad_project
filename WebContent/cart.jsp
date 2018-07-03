@@ -48,15 +48,17 @@ alert(type.value);
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="<c:url value="LoginController">
+              <c:param name="mode" value="fetch"/>
+        				</c:url>">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">My Reservations</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cart.jsp">Cart</a>
+              <a class="nav-link" href="<c:url value="CartController">
+              <c:param name="mode" value="fetch"/>
+        				</c:url>">Cart</a>
             </li>
             <li class="nav-item">
               	<a class="nav-link" href="logout.jsp">logout</a>
@@ -65,17 +67,33 @@ alert(type.value);
         </div>
       </div>
     </nav>
+    
+    <h4>${cannotBeAdded}</h4>
+  
 
 	<c:forEach items="${eventsInCart}" var="event">
 	<table>
-				<tr>
-					<td><c:out value="${event.eventId}" /></td>
-				</tr>
+
 				<tr>
 					<td><c:out value="${event.topic}" /></td>
+					<td><c:out value="${event.price}" /></td>
+					<td><a href="<c:url value="CartController">
+            			<c:param name="eventToBeDeleted" value="${event.eventId}"/>
+            			<c:param name="mode" value="delete"/>
+        				</c:url>">Delete</a></td>
 				</tr>
 		</table>
 	</c:forEach>
+	
+	<table>
+	<tr>
+	<td> Order Total:</td>
+	<td>${orderTotal}</td>
+	</tr>
+	</table>
+	
+	
+	<button>Checkout</button>
 
 
 
