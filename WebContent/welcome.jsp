@@ -90,34 +90,24 @@ alert(type.value);
 							<label class="form-check-label" for="checkbox100">Sports</label>
 						</div> </a> <a class="list-group-item"><h4>Date</h4>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox103" name= "date" value = "Less than 3 Days" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">Less
-								than 3 Days</label>
+							<input type="checkbox" class="form-check-input" id="checkbox103" name= "date" value = "date" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Sort by Date</label>
 						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox104" name= "date" value = "Less than 7 Days" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">Less
-								than 7 Days</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox105" name= "date" value = "Less than 30 Days" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">Less
-								than 30 Days</label>
-						</div> </a> <a class="list-group-item"><h4>Price</h4>
+						
+						 </a> <a class="list-group-item"><h4>Price</h4>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" id="checkbox106" name= "price" value = "0.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">0.0</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox107" name= "price" value = "0.0 - 5.0" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="checkbox107" name= "price" value = "5.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">0.0 -
 								5.0</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox108" name= "price" value = "5.0 - 10.0" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="checkbox108" name= "price" value = "10.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">5.0 -
-								10.0</label>
-						</div> </a>
+								10.0</label> </div></a>
 						<input type="submit" value = "submit" name = "submit"> 
 				</div>
 				</form>
