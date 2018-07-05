@@ -40,7 +40,7 @@ alert(type.value);
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="#">Reserve Tickets</a>
+		<a class="navbar-brand" href="#">${message}</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -68,7 +68,9 @@ alert(type.value);
 	</div>
 	</nav>
 
-
+	<h4>Thank You</h4>
+	
+	<p>${errormessage}</p>
 
 
 

@@ -11,7 +11,12 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+    <%   
+  
+    if(session.getAttribute("user") == null || session.getAttribute("user") =="root"){
+	response.sendRedirect("login.jsp");
+}
+    %>
     <!-- bootstrap general -->
 
 	<!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
@@ -40,7 +45,7 @@ alert(type.value);
  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Reserve Tickets</a>
+      	<a class = "navbar-brand" href="#">${message}</a>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -84,8 +89,12 @@ alert(type.value);
 							<label class="form-check-label" for="checkbox100">Education</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox101" name = "type" value= "Fun" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">Fun</label>
+							<input type="checkbox" class="form-check-input" id="checkbox101" name = "type" value= "health" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Health</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox101" name = "type" value= "music" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Music</label>
 						</div>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" id="checkbox102" name = "type" value = "Sports" onchange = "onChecked()">
@@ -98,18 +107,16 @@ alert(type.value);
 						
 						 </a> <a class="list-group-item"><h4>Price</h4>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox106" name= "price" value = "0.0" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">0.0</label>
+							<input type="radio" class="form-check-input" id="checkbox106" name= "price" value = "0.0" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Free</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox107" name= "price" value = "5.0" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">0.0 -
-								5.0</label>
+							<input type="radio" class="form-check-input" id="checkbox107" name= "price" value = "5.0" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Less than 5.0</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox108" name= "price" value = "10.0" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">5.0 -
-								10.0</label> </div></a>
+							<input type="radio" class="form-check-input" id="checkbox108" name= "price" value = "10.0" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Less than 10.0</label> </div></a>
 						<input type="submit" value = "submit" name = "submit"> 
 				</div>
 				</form>

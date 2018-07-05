@@ -38,6 +38,9 @@ public class CartController extends HttpServlet{
 		if(mode.equals("fetch")){
 			request.setAttribute("eventsInCart", cartDao.getCartItems());
 			request.setAttribute("orderTotal", cartDao.getOrderTotal());
+			HttpSession session = request.getSession();
+			Student stu = (Student) session.getAttribute("user");
+			request.setAttribute("message", "Hello"+" " + stu.getEmail());
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 			
 		}else if(mode.equals("delete")){
@@ -47,6 +50,9 @@ public class CartController extends HttpServlet{
 			for(Event event : listedEvents){
 				if(event.getEventId() == Integer.parseInt(eventToBeDeleted)){
 					cartDao.deleteCartItem(event);
+					HttpSession session = request.getSession();
+					Student stu = (Student) session.getAttribute("user");
+					request.setAttribute("message", "Hello"+" " + stu.getEmail());
 					request.setAttribute("eventsInCart", cartDao.getCartItems());
 					request.setAttribute("orderTotal", cartDao.getOrderTotal());
 					request.getRequestDispatcher("cart.jsp").forward(request, response);
@@ -85,20 +91,28 @@ public class CartController extends HttpServlet{
 					}
 					cartDao.addCartItem(eventSelected);
 					//cartDao.calculateOrderTotal();
+					HttpSession session = request.getSession();
+					Student stu = (Student) session.getAttribute("user");
+					request.setAttribute("message", "Hello"+" " + stu.getEmail());
 					request.setAttribute("eventsInCart", cartDao.getCartItems());
 					request.setAttribute("orderTotal", cartDao.getOrderTotal());
 					
 					request.getRequestDispatcher("cart.jsp").forward(request, response);
-				}
-				else if(mode.equals("delete")){
-					Event eventToBeDeleted = (Event) request.getAttribute("eventToBeDeleted");
-					cartDao.deleteCartItem(eventToBeDeleted);
-					request.setAttribute("eventsInCart", cartDao.getCartItems());
-					request.setAttribute("orderTotal", cartDao.getOrderTotal());
-				}
-				else{
-					request.setAttribute("eventsInCart", cartDao.getCartItems());
-					request.getRequestDispatcher("cart.jsp").forward(request, response);
+				}else if(mode.equals("Checkout")){
+					HttpSession session = request.getSession();
+					Student studentLoggedIn = (Student) session.getAttribute("user");
+					boolean status = cartDao.checkout(studentLoggedIn, cart);
+					if(status){
+						cart.setEventsSelected(null);
+						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());
+						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
+					}
+					else{
+						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());
+						request.setAttribute("errormessage","Transaction invalid");
+						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
+					}
+					
 				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

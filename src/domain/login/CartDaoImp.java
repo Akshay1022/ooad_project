@@ -1,7 +1,14 @@
 package domain.login;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import db.DbManager;
 
 public class CartDaoImp implements CartDao{
 	
@@ -56,8 +63,63 @@ public class CartDaoImp implements CartDao{
 	public double getOrderTotal() {
 		return cart.getTotalCost();
 	}
-	
-	
-	
+
+
+	@Override
+	public boolean checkout(Student student, Cart cart) {
+		// TODO Auto-generated method stub
+		DbManager db = new DbManager();
+		Connection conn = db.getConnection();;
+		PreparedStatement ps1;
+		PreparedStatement ps2;
+		
+		try {
+			int currRegId = 0;
+			List<Integer> status = new ArrayList<>();
+			
+			ps1 =conn.prepareStatement("insert into registration (Email,Total) values(?,?)");
+			ps1.setString(1, student.getEmail());
+			ps1.setDouble(2, cart.getTotalCost());
+			
+			status.add(ps1.executeUpdate());
+			
+			ps2 =conn.prepareStatement("select max(RegID) from registration where Email = ?");
+			ps2.setString(1, student.getEmail());
+			ResultSet rs = ps2.executeQuery();
+			while(rs.next()){
+				currRegId = rs.getInt(1);
+			}
+			
+			for(Event chosenEvent : cart.getEventsSelected()){
+				PreparedStatement ps3 = conn.prepareStatement("insert into checkoutlist values (?,?)");
+				ps3.setInt(1, currRegId);
+				ps3.setLong(2, chosenEvent.getEventId());
+				status.add(ps3.executeUpdate());
+			}
+			
+			
+			conn.close();
+			
+			for(int check:status){
+				if(check >0)
+					continue;
+				else{
+					return false;
+				}
+				
+			}
+			return true;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+	}
+
 
 }

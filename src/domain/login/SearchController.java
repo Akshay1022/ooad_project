@@ -1,14 +1,6 @@
 package domain.login;
 
 import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +10,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,36 +49,51 @@ public class SearchController extends HttpServlet{
 			String q = "select * from events where";
 			
 			if(events!=null){
-			for(int i=0; i<events.length; i++)
+			for(int i=0; i<events.length; i++){
 				if(events[i] != null)
-					q = q + " EventType = ? or ";
+					if(i==0)
+					q = q + " (EventType = ?";
+					else if(i>0 )
+						q = q + " or EventType = ? ";
+			}		
+			q = q + "  ) ";			
 			}
-			String q2 = q.substring(0, q.length()-4);
-			if (events==null || price==null)
-				q2 =q2 + "here";
-			else if (events!=null && price!=null)
-				q2 += " or ";
+			
+			String q2 = q;
+	//		if (events==null || price==null)
+	//			q2 =q2 + "here";
+			if (events!=null && price!=null)
+				q2 += " and ";
 			if(price!=null){
-			for(int i=0; i<price.length; i++)
+			for(int i=0; i<price.length; i++){
 				if(price[i] != null)
 					q2 = q2 + " price <= ? or ";
 			}
-			String q3 = q2.substring(0, q2.length()-4);
+			q2 = q2.substring(0, q2.length()-4);
+		}
+			
+			String q3 = q2;
 			if (events==null && price==null && date!=null)
 				q3 = "select * from events ORDER BY EventDate ASC";
-			if (events!=null || price!=null && date !=null)
+			if ( date !=null){
+				if(events==null && price==null){
+					q3 = q3.substring(0, q2.length()-5);
 				q3 += " ORDER BY EventDate ASC";
+				}
+			}
 			
 			ps =conn.prepareStatement(q3);
-			
+			int count = 0;
 			if(events!=null){	
 			for(int i=0; i<events.length; i++){
 				ps.setString(i+1, events[i]);
+				count=i+1;
 			}
 		}
 			if(price!=null){
 			for(int i=0; i<price.length; i++){
-				ps.setString(i+1, price[i]);
+				ps.setString(count+1, price[i]);
+				count++;
 			}
 			}
 			
@@ -110,6 +118,9 @@ public class SearchController extends HttpServlet{
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		HttpSession session = request.getSession();
+		Student stu = (Student) session.getAttribute("user");
+		request.setAttribute("message", "Hello"+" " + stu.getEmail());
 		request.setAttribute("events", listCurrentEvents);
 		request.getRequestDispatcher("welcome.jsp").forward(request, response);
 		//filtered.setEventType(events);

@@ -32,6 +32,9 @@ public class LoginController extends HttpServlet {
 		String mode = request.getParameter("mode");
 		if(mode.equals("fetch")){
 			List<Event> fetchedEvents = eventsDao.getCurrentEvents();
+			HttpSession session = request.getSession();
+			Student stu = (Student) session.getAttribute("user");
+			request.setAttribute("message", "Hello"+" " + stu.getEmail());
 			request.setAttribute("events", fetchedEvents);
 			request.getRequestDispatcher("welcome.jsp").forward(request, response);
 		}
@@ -74,14 +77,14 @@ public class LoginController extends HttpServlet {
 				response.addCookie(userName);
 				
 				request.setAttribute("message", "Hello "+c.getEmail());
-				
 				request.setAttribute("events", fetchedEvents);
+				session.setAttribute("user", c);
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
 			
 			}
 			else{
 				request.setAttribute("message", "Data Not Found! Please register!");
-				request.getRequestDispatcher("register.jsp").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 
 		}

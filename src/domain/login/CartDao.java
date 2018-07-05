@@ -15,4 +15,6 @@ public interface CartDao {
 	public void calculateOrderTotal();
 	
 	public double getOrderTotal();
+
+	public boolean checkout(Student student, Cart cart);
 }
