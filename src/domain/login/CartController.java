@@ -103,7 +103,7 @@ public class CartController extends HttpServlet{
 					Student studentLoggedIn = (Student) session.getAttribute("user");
 					boolean status = cartDao.checkout(studentLoggedIn, cart);
 					if(status){
-						cart.setEventsSelected(null);
+						cart.setEventsSelected(null); 
 						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());
 						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
 					}
