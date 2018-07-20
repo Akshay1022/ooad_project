@@ -3,6 +3,7 @@ package domain.login;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ public class CartController extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	Cart cart;
 	CartDao cartDao;
 
@@ -30,10 +31,10 @@ public class CartController extends HttpServlet{
 		this.cart = new Cart();
 		this.cartDao = new CartDaoImp(cart);
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String mode = request.getParameter("mode");
 		if(mode.equals("fetch")){
 			request.setAttribute("eventsInCart", cartDao.getCartItems());
@@ -42,7 +43,7 @@ public class CartController extends HttpServlet{
 			Student stu = (Student) session.getAttribute("user");
 			request.setAttribute("message", "Hello"+" " + stu.getEmail());
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
-			
+
 		}else if(mode.equals("delete")){
 			//String eventToBeDeleted = request.getParameter("eventToBeDeleted");
 			String eventToBeDeleted = request.getParameter("eventToBeDeleted");
@@ -59,7 +60,7 @@ public class CartController extends HttpServlet{
 					return;
 				}
 			}
-			
+
 		}
 	}
 
@@ -73,20 +74,25 @@ public class CartController extends HttpServlet{
 			//Event eventSelected = (Event) request.getSession().getAttribute(selectedEventId);
 
 			//Event eventSelected = (Event) request.getSession().getAttribute(eventChosen);
-			
+
 			try {
 				//Event eventSelected;
-
 				String mode = request.getParameter("mode");
 				if(mode.equals("Add to cart")){
 					Event eventSelected = new Event(Integer.parseInt(request.getParameter("eventId")),request.getParameter("topic"),request.getParameter("eventType"),new java.sql.Date ((new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("eventDate"))).getTime()),request.getParameter("location"),Float.parseFloat(request.getParameter("price")),request.getParameter("eventTime"),request.getParameter("description"));
 					List<Event> listedEvents = cartDao.getCartItems();
+					System.out.println(eventSelected.getTopic());
 					for(Event event : listedEvents){
-						if(event.getEventId() == eventSelected.eventId){
-							request.setAttribute("cannotBeAdded","Event already into the cart");
-							request.setAttribute("orderTotal", cartDao.getOrderTotal());
-							request.getRequestDispatcher("cart.jsp").forward(request, response);
-							return;
+						System.out.println(event.getTopic());
+					}
+					if(listedEvents.size()!=0){
+						for(Event event : listedEvents){
+							if(event.getEventId() == eventSelected.getEventId()){
+								request.setAttribute("cannotBeAdded","Event already into the cart");
+								request.setAttribute("orderTotal", cartDao.getOrderTotal());
+								request.getRequestDispatcher("cart.jsp").forward(request, response);
+								return;
+							}
 						}
 					}
 					cartDao.addCartItem(eventSelected);
@@ -96,14 +102,16 @@ public class CartController extends HttpServlet{
 					request.setAttribute("message", "Hello"+" " + stu.getEmail());
 					request.setAttribute("eventsInCart", cartDao.getCartItems());
 					request.setAttribute("orderTotal", cartDao.getOrderTotal());
-					
+
 					request.getRequestDispatcher("cart.jsp").forward(request, response);
 				}else if(mode.equals("Checkout")){
 					HttpSession session = request.getSession();
 					Student studentLoggedIn = (Student) session.getAttribute("user");
-					boolean status = cartDao.checkout(studentLoggedIn, cart);
+					Reservation reservation = new Reservation(studentLoggedIn,cart);
+					boolean status = cartDao.checkout(reservation);
+					
 					if(status){
-						cart.setEventsSelected(null); 
+						cart.setEventsSelected(new ArrayList<Event>()); 
 						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());
 						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
 					}
@@ -112,7 +120,7 @@ public class CartController extends HttpServlet{
 						request.setAttribute("errormessage","Transaction invalid");
 						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
 					}
-					
+
 				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

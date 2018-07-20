@@ -3,14 +3,14 @@ package domain.login;
 import java.sql.Date;
 
 public class Event {
-	int eventId;
-	String topic;
-	String eventType;
-	Date eventDate;
-	String location;
-	float price;
-	String eventTime;
-	String description;
+	private int eventId;
+	private String topic;
+	private String eventType;
+	private Date eventDate;
+	private String location;
+	private float price;
+	private String eventTime;
+	private String description;
 
 	
 	public Event() {

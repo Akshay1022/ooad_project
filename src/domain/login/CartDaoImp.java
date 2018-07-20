@@ -66,7 +66,7 @@ public class CartDaoImp implements CartDao{
 
 
 	@Override
-	public boolean checkout(Student student, Cart cart) {
+	public boolean checkout(Reservation res) {
 		// TODO Auto-generated method stub
 		DbManager db = new DbManager();
 		Connection conn = db.getConnection();;
@@ -78,13 +78,13 @@ public class CartDaoImp implements CartDao{
 			List<Integer> status = new ArrayList<>();
 			
 			ps1 =conn.prepareStatement("insert into registration (Email,Total) values(?,?)");
-			ps1.setString(1, student.getEmail());
-			ps1.setDouble(2, cart.getTotalCost());
+			ps1.setString(1, res.getStudent().getEmail());
+			ps1.setDouble(2, res.getCart().getTotalCost());
 			
 			status.add(ps1.executeUpdate());
 			
 			ps2 =conn.prepareStatement("select max(RegID) from registration where Email = ?");
-			ps2.setString(1, student.getEmail());
+			ps2.setString(1, res.getStudent().getEmail());
 			ResultSet rs = ps2.executeQuery();
 			while(rs.next()){
 				currRegId = rs.getInt(1);

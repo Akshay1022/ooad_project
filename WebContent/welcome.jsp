@@ -58,7 +58,7 @@ alert(type.value);
         				</c:url>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">My Reservations</a>
+              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<c:url value="CartController">

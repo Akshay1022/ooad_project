@@ -8,6 +8,7 @@ public class Student {
 
 	private String Email;
 	private String UserPassword;
+	
 	public String getEmail() {
 		return Email;
 	}

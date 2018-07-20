@@ -16,5 +16,5 @@ public interface CartDao {
 	
 	public double getOrderTotal();
 
-	public boolean checkout(Student student, Cart cart);
+	public boolean checkout(Reservation res);
 }
