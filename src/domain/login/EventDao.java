@@ -9,6 +9,10 @@ public interface EventDao {
 	
 	public int addEvent(Event event);
 	
+	public int updateEvent(Event event);
+	
+	public Event getEvent(String id);
+	
 	public Event getRequiredEvent(String eventTopic);
 
 }

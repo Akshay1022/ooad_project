@@ -95,6 +95,65 @@ public class EventsDaoImp implements EventDao{
 		}
 		
 	}
+	
+	@Override
+	public Event getEvent(String id) {
+		try{
+			conn = db.getConnection();
+			ps =conn.prepareStatement("select * from Events where EventId = ?");
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			Event event = null;
+			while(rs.next()){
+				event = new Event(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getFloat(6),rs.getString(7),rs.getString(8));
+			}
+			
+			return event;
+		}catch(Exception e){
+			System.out.println(e);
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public int updateEvent(Event event) {
+	    	int status = 0;
+	    	
+			try{
+				conn = db.getConnection();
+			//	String query = "SELECT MAX(EventId) AS `maxid` FROM events";
+			//	Statement st = conn.createStatement(); 
+			 //   ResultSet rs = st.executeQuery(query);
+			//    int maxid=0;
+			//    while (rs.next())
+			//      {
+			//        maxid = rs.getInt("maxid");
+			//      }
+			    
+				ps =conn.prepareStatement("update events SET EventId = ? , Topic = ?, EventType = ? , EventDate = ?, Location= ?, Price = ?, EventTime = ?, Description = ? WHERE EventId = ?");
+		//		ps =conn.prepareStatement("INSERT INTO events (title, desc, id) VALUES (?, ?, ?)");
+				ps.setInt(1, event.getEventId());
+				ps.setString(2, event.getTopic());
+				ps.setString(3, event.getEventType());
+				
+				ps.setDate(4, event.getEventDate());
+				ps.setString(5, event.getLocation());
+				ps.setFloat(6, event.getPrice());
+				ps.setString(7, event.getEventTime());
+				ps.setString(8, event.getDescription());
+				ps.setInt(9, event.getEventId());
+								
+				
+				status = ps.executeUpdate();
+				conn.close();
+			}catch(Exception e){
+				System.out.println(e);
+			}
+		
+			return status;
+	    	
+	    }
 		
 	}
 
