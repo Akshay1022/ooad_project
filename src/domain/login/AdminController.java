@@ -62,6 +62,43 @@ public class AdminController extends HttpServlet{
 		}
     	
     }
+    else if(submitType.equals("edit_event")){
+    	
+    	EventDao eventModifier = new EventsDaoImp();
+    	
+    	
+    	Event requiredEvent = eventModifier.getEvent(request.getParameter("id"));
+    	
+    	
+    	request.setAttribute("selectedEventId", requiredEvent);
+    	
+		request.getRequestDispatcher("edit_form.jsp").forward(request, response);
+    	
+    	
+		
+    	
+    }
+    else if(submitType.equals("edit_form")){
+    	
+    	EventDao eventModifier = new EventsDaoImp();
+    	
+    	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+    	java.util.Date date;
+		try {
+			date = sdf1.parse(request.getParameter("date"));
+		
+    	java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
+    	Event eventobject = new Event(Integer.parseInt(request.getParameter("id")),request.getParameter("title"),request.getParameter("type"),sqlStartDate,request.getParameter("loc"),Float.parseFloat(request.getParameter("price")),request.getParameter("time"),request.getParameter("desc") );
+    	eventModifier.updateEvent(eventobject);
+    //	addEvents(ae);
+    //	request.getRequestDispatcher("admin.jsp");
+    	response.sendRedirect("admin.jsp");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
     
     	}
     	else

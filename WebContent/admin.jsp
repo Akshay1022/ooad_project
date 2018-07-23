@@ -63,6 +63,8 @@ for(Cookie cookie : cookies){
 <br>
 <h4><a href="add_event.jsp">Add Event</a></h4>
 <br>
+<h4><a href="edit_event.jsp">Edit Event</a></h4>
+<br>
 <h4><a href="logout.jsp">Logout</a></h4>
 </center>
 	<!-- Footer -->
