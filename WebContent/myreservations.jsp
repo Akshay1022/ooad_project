@@ -70,9 +70,13 @@ alert(type.value);
 	</div>
 	</nav>
 
-	
+	<h4>Exisiting Reservations</h4><br>
 	<c:forEach items="${pastEvents}" var="item" varStatus="loop">
-	<table>
+	
+	<table cellpading="10"cellspacing="10">
+	<col width="500">
+	<col width="200">
+
     <tr>
     <td id= "topic${loop.index+1 }" name="topic">${item.topic}
     </td>

@@ -54,7 +54,7 @@ alert(type.value);
         				</c:url>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">My Reservations</a>
+              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<c:url value="CartController">
@@ -89,8 +89,10 @@ alert(type.value);
 				</tr>
 		</table>
 	</c:forEach>
-	
+	<br>
 	<table cellpading="10"cellspacing="10">
+	<col width="200">
+	<col width="200">
 	<tr>
 	<td> Order Total:</td>
 	<td>${orderTotal}</td>
@@ -98,7 +100,7 @@ alert(type.value);
 	</table>
 
 	<form name="checkoutEvents" action="CartController" method="post" onSubmit="">
-	
+	<br>
 	<input type="submit"  value="Checkout" name="mode" <c:if test="${empty(eventsInCart)}"><c:out value="disabled='disabled'"/></c:if>>
 	<!--  	 <input type="submit" value="Checkout" name="mode"> -->
 	</form>
