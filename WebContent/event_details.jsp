@@ -20,7 +20,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<title>Details Page</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@ alert(type.value);
         				</c:url>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">My Reservations</a>
+              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<c:url value="CartController">
@@ -112,7 +112,7 @@ alert(type.value);
 	<form name="selectedEvent" action="CartController" method="post" onSubmit="">
 
 	<input type="hidden" name="eventId" value="${selectedEventId.eventId}">
-	<input type="hidden" name="topic" value="${selectedEventId.topic}">
+	<input type="hidden" id = "event-topic" name="topic" value="${selectedEventId.topic}">
 	<input type="hidden" name="eventType" value="${selectedEventId.eventType}">
 	<input type="hidden" name="eventDate" value="${selectedEventId.eventDate}">
 	<input type="hidden" name="location" value="${selectedEventId.location}">

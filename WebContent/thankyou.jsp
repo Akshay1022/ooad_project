@@ -20,7 +20,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<title>Thank You Page</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -54,7 +54,8 @@ alert(type.value);
               <c:param name="mode" value="fetch"/>
         				</c:url>">Home</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">My
+				<li id= "myreservation" class="nav-item"><a class="nav-link"
+					href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My
 						Reservations</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="CartController">
@@ -67,10 +68,18 @@ alert(type.value);
 		</div>
 	</div>
 	</nav>
+	<%
+out.println("<div class=\"jumbotron text-xs-center\">");
+out.println("  <h1 class=\"display-3\">Thank You!</h1>");
+out.println("  <p class=\"lead\"><strong>Please check your email</strong> for confirmation.</p>");
+//out.println("  <hr>");
+out.println("</div>");
+%>
 
-	<h4>Thank You</h4>
-	
+
 	<p>${errormessage}</p>
+
+
 
 
 

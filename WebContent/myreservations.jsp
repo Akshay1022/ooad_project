@@ -20,7 +20,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<title>Reservations Page</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,33 +49,35 @@ alert(type.value);
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="<c:url value="LoginController">
+				<li class="nav-item active">
+              <a class="nav-link" href="<c:url value="LoginController">
               <c:param name="mode" value="fetch"/>
         				</c:url>">Home</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">My
-						Reservations</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="<c:url value="CartController">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<c:url value="CartController">
               <c:param name="mode" value="fetch"/>
         				</c:url>">Cart</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="logout.jsp">logout</a>
-				</li>
+            </li>
+            <li class="nav-item">
+              	<a class="nav-link" href="logout.jsp">logout</a>
+            </li>
 			</ul>
 		</div>
 	</div>
 	</nav>
 
 	
-	<c:forEach items="${pastEvents}" var="item">
+	<c:forEach items="${pastEvents}" var="item" varStatus="loop">
 	<table>
     <tr>
-    <td>${item.topic}
+    <td id= "topic${loop.index+1 }" name="topic">${item.topic}
     </td>
     <td>
-    <a href="<c:url value="MyReservationController">
+    <a id= "cancel${loop.index+1 }" href="<c:url value="MyReservationController">
         <c:param name="eventToBeCancelled" value="${item.eventId}"/>
         <c:param name="mode" value="cancel"/>
         </c:url>">Cancel</a>
@@ -87,7 +89,7 @@ alert(type.value);
 
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark fixed-bottom">
+	<footer class="py-2 bg-dark fixed-bottom">
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Group:5</p>
 	</div>

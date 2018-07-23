@@ -85,17 +85,22 @@ public class CartController extends HttpServlet{
 					for(Event event : listedEvents){
 						System.out.println(event.getTopic());
 					}
+					
 					if(listedEvents.size()!=0){
 						for(Event event : listedEvents){
 							if(event.getEventId() == eventSelected.getEventId()){
 								request.setAttribute("cannotBeAdded","Event already into the cart");
+								request.setAttribute("eventsInCart", cartDao.getCartItems());
 								request.setAttribute("orderTotal", cartDao.getOrderTotal());
 								request.getRequestDispatcher("cart.jsp").forward(request, response);
 								return;
 							}
+							
 						}
 					}
+					
 					cartDao.addCartItem(eventSelected);
+					
 					//cartDao.calculateOrderTotal();
 					HttpSession session = request.getSession();
 					Student stu = (Student) session.getAttribute("user");
@@ -109,7 +114,7 @@ public class CartController extends HttpServlet{
 					Student studentLoggedIn = (Student) session.getAttribute("user");
 					Reservation reservation = new Reservation(studentLoggedIn,cart);
 					boolean status = cartDao.checkout(reservation);
-					
+
 					if(status){
 						cart.setEventsSelected(new ArrayList<Event>()); 
 						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());

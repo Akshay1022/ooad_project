@@ -20,7 +20,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Page</title>
+<title>Cart</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@ alert(type.value);
         				</c:url>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">My Reservations</a>
+              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<c:url value="CartController">
@@ -71,13 +71,13 @@ alert(type.value);
     <h4>${cannotBeAdded}</h4>
   
 
-	<c:forEach items="${eventsInCart}" var="event">
-	<table>
+	<c:forEach items="${eventsInCart}" var="event" varStatus = "loop">
+	<table >
 
 				<tr>
-					<td><c:out value="${event.topic}" /></td>
+					<td name = "eventsInCart" id = "eventsInCart${loop.index+1}" ><c:out value="${event.topic}" /></td>
 					<td><c:out value="${event.price}" /></td>
-					<td><a href="<c:url value="CartController">
+					<td id = "delete${loop.index+1}"><a href="<c:url value="CartController">
             			<c:param name="eventToBeDeleted" value="${event.eventId}"/>
             			<c:param name="mode" value="delete"/>
         				</c:url>">Delete</a></td>
@@ -93,7 +93,7 @@ alert(type.value);
 	</table>
 
 	<form name="checkoutEvents" action="CartController" method="post" onSubmit="">
-		 <input type="submit" value="Checkout" name="mode">
+		 <input id= "checkout" type="submit" value="Checkout" name="mode">
 	</form>
 
 

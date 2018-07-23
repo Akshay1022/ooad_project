@@ -75,6 +75,7 @@ alert(type.value);
     
     </br>
         <!-- Page Content -->
+        <div class="scrollable">
     <div class="container">
 
       <div class="row">
@@ -85,39 +86,39 @@ alert(type.value);
 				<div class="list-group">
 					<a class="list-group-item"><h4>Type</h4>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox100" name = "type" value = "Education" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="education" name = "type" value = "Education" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Education</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox101" name = "type" value= "health" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="health" name = "type" value= "health" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Health</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox101" name = "type" value= "music" onchange = "onChecked()">
-							<label class="form-check-label" for="checkbox100">Music</label>
+							<input type="checkbox" class="form-check-input" id="fun" name = "type" value= "fun" onchange = "onChecked()">
+							<label class="form-check-label" for="checkbox100">Fun</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox102" name = "type" value = "Sports" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="sports" name = "type" value = "Sports" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Sports</label>
 						</div> </a> <a class="list-group-item"><h4>Date</h4>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox103" name= "date" value = "date" onchange = "onChecked()">
+							<input type="checkbox" class="form-check-input" id="sortdate" name= "date" value = "date" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Sort by Date</label>
 						</div>
 						
 						 </a> <a class="list-group-item"><h4>Price</h4>
 						<div class="form-check">
-							<input type="radio" class="form-check-input" id="checkbox106" name= "price" value = "0.0" onchange = "onChecked()">
+							<input type="radio" class="form-check-input" id="free" name= "price" value = "0.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Free</label>
 						</div>
 						<div class="form-check">
-							<input type="radio" class="form-check-input" id="checkbox107" name= "price" value = "5.0" onchange = "onChecked()">
+							<input type="radio" class="form-check-input" id="five" name= "price" value = "5.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Less than 5.0</label>
 						</div>
 						<div class="form-check">
-							<input type="radio" class="form-check-input" id="checkbox108" name= "price" value = "10.0" onchange = "onChecked()">
+							<input type="radio" class="form-check-input" id="ten" name= "price" value = "10.0" onchange = "onChecked()">
 							<label class="form-check-label" for="checkbox100">Less than 10.0</label> </div></a>
-						<input type="submit" value = "submit" name = "submit"> 
+						<input type="submit" value = "Search" name = "submit"> 
 				</div>
 				</form>
 				<!-- /.col-lg-2 -->
@@ -126,17 +127,17 @@ alert(type.value);
 		<p id = results></p>
        <div class="col-lg-9">
         <div class="row">
-        <c:forEach items="${events}" var="event">
+        <c:forEach items="${events}" var="event" varStatus = "loop">
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
              
                 <div class="card-body">
                   <h4 class="card-title">
                     <!-- <a href="#"><c:out value="${event.topic}" /></a> -->
-                     <a href="<c:url value="DetailsController">
+                     <a id = "event${loop.index+1}" href="<c:url value="DetailsController">
             			<c:param name="topic" value="${event.topic}"/>
         				</c:url>"><c:out value="${event.topic}" /></a>
-                    
+                    <h6 id="event-type"><c:out value="${event.eventType}" /></h6>
                   </h4>
                   <h5><c:out value="${event.price}" /></h5>
                   <p class="card-text"><c:out value="${event.eventDate}" /></p>
@@ -164,7 +165,7 @@ alert(type.value);
     <!-- /.container -->
     
 	<!-- Footer -->
-    <footer class="py-5 bg-dark fixed-bottom">
+    <footer class="py-2 bg-dark fixed-bottom">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Group:5</p>
       </div>
@@ -175,6 +176,6 @@ alert(type.value);
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>  
 
-
+</div>
 </body>
 </html>

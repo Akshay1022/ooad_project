@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
 			
 			List<Event> fetchedEvents = eventsDao.getCurrentEvents();
 		
-			if(submitType.equals("login") && c!=null){
+			if(submitType.equals("login") && c.getEmail()!=null){
 				HttpSession session = request.getSession();
 				session.setAttribute("user", c.getEmail());
 				//setting session to expiry in 30 mins
