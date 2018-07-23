@@ -68,47 +68,13 @@ alert(type.value);
       </div>
     </nav>
     
-    <table>
-			<thead>
-				<tr>
-					<th>EventId</th>
-					<th>Topic</th>
-					<th>EventType</th>
-					<th>EventDate</th>
-					<th>Location</th>
-					<th>Price</th>
-					<th>EventTime</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${selectedEventId.eventId}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.topic}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.eventType}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.eventDate}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.location}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.price}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.eventTime}</td>
-				</tr>
-				<tr>
-					<td>${selectedEventId.description}</td>
-				</tr>
-			</tbody>
-		</table>
-
+    <div class="col-md-4">
+	<h3 class="my-3">${selectedEventId.topic}</h3>
+	<p>${selectedEventId.description}</p>
+	<p>DATE AND TIME <br>${selectedEventId.eventDate} <br>${selectedEventId.eventTime}</p>
+	<p>LOCATION<br>${selectedEventId.location}</p>
+	<p>PRICE<br>${selectedEventId.price}</p>
+    
 	<form name="selectedEvent" action="CartController" method="post" onSubmit="">
 
 	<input type="hidden" name="eventId" value="${selectedEventId.eventId}">

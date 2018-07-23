@@ -68,11 +68,17 @@ alert(type.value);
       </div>
     </nav>
     
+    
+    
     <h4>${cannotBeAdded}</h4>
   
 
 	<c:forEach items="${eventsInCart}" var="event" varStatus = "loop">
-	<table >
+	<table cellpading="10"cellspacing="10">
+	<col width="200">
+	<col width="200">
+	<col width="200">
+	
 
 				<tr>
 					<td name = "eventsInCart" id = "eventsInCart${loop.index+1}" ><c:out value="${event.topic}" /></td>
@@ -85,7 +91,7 @@ alert(type.value);
 		</table>
 	</c:forEach>
 	
-	<table>
+	<table cellpading="10"cellspacing="10">
 	<tr>
 	<td> Order Total:</td>
 	<td>${orderTotal}</td>

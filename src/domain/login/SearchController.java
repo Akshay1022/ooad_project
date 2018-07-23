@@ -24,7 +24,7 @@ public class SearchController extends HttpServlet{
 			String date[] = request.getParameterValues("date");
 			String price[] = request.getParameterValues("price");
 			Search search = new Search(date,events,price);
-			SearchControllerDao searchDao = new SearchControllerDaoImpl();
+			SearchDao searchDao = new SearchDaoImpl();
 			List<Event> searchedEvents = searchDao.searchEvents(search);
 			request.setAttribute("events", searchedEvents);
 			request.getRequestDispatcher("welcome.jsp").forward(request, response);

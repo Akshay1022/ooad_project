@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -113,6 +115,36 @@ public class CartController extends HttpServlet{
 					HttpSession session = request.getSession();
 					Student studentLoggedIn = (Student) session.getAttribute("user");
 					Reservation reservation = new Reservation(studentLoggedIn,cart);
+					ReservationDAO reservations = new ReservationDAOImpl();
+					HashMap<Integer, Reservation> existingReservation= reservations.getCurrentReservations(studentLoggedIn);
+					List<Event> eventSelected = cart.getEventsSelected();
+					ArrayList<Event> copySelectedReg = new ArrayList<>(eventSelected);
+					for(int regId : existingReservation.keySet()){
+						List<Event> eventsRegistered = existingReservation.get(regId).getCart().getEventsSelected();
+						for(Event e : eventsRegistered){
+							System.out.println("registered :" + e.getTopic());
+						}
+						for(Event e1 : copySelectedReg){
+							System.out.println("new unmodified: "+e1.getTopic());
+						}
+						//copySelectedReg.removeAll(eventsRegistered);
+						for(Event regi : eventsRegistered){
+							Iterator<Event> j = copySelectedReg.iterator();
+							
+							while(j.hasNext()){
+								String title = j.next().getTopic();
+								if(title.equals(regi.getTopic())){
+								j.remove();}
+						}}
+						
+						
+						for(Event e1 : copySelectedReg){
+							System.out.println("new modified: "+e1.getTopic());
+						}
+					}
+					
+					cart.setEventsSelected(copySelectedReg);
+					
 					boolean status = cartDao.checkout(reservation);
 
 					if(status){

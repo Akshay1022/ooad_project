@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import db.DbManager;
 
-public class SearchControllerDaoImpl implements SearchControllerDao{
+public class SearchDaoImpl implements SearchDao{
 	static Connection conn;
 	static PreparedStatement ps;
 	DbManager db = new DbManager();
