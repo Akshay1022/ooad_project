@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -20,7 +21,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cart</title>
+<title>Welcome Page</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +54,7 @@ alert(type.value);
         				</c:url>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<c:url value="MyReservationController"><c:param name="mode" value="fetch"/></c:url>">My Reservations</a>
+              <a class="nav-link" href="#">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<c:url value="CartController">
@@ -71,13 +72,13 @@ alert(type.value);
     <h4>${cannotBeAdded}</h4>
   
 
-	<c:forEach items="${eventsInCart}" var="event" varStatus = "loop">
-	<table >
+	<c:forEach items="${eventsInCart}" var="event">
+	<table>
 
 				<tr>
-					<td name = "eventsInCart" id = "eventsInCart${loop.index+1}" ><c:out value="${event.topic}" /></td>
+					<td><c:out value="${event.topic}" /></td>
 					<td><c:out value="${event.price}" /></td>
-					<td id = "delete${loop.index+1}"><a href="<c:url value="CartController">
+					<td><a href="<c:url value="CartController">
             			<c:param name="eventToBeDeleted" value="${event.eventId}"/>
             			<c:param name="mode" value="delete"/>
         				</c:url>">Delete</a></td>
@@ -93,7 +94,9 @@ alert(type.value);
 	</table>
 
 	<form name="checkoutEvents" action="CartController" method="post" onSubmit="">
-		 <input id= "checkout" type="submit" value="Checkout" name="mode">
+	
+	<input type="submit"  value="Checkout" name="mode" <c:if test="${empty(eventsInCart)}"><c:out value="disabled='disabled'"/></c:if>>
+	<!--  	 <input type="submit" value="Checkout" name="mode"> -->
 	</form>
 
 
