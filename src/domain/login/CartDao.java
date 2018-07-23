@@ -14,7 +14,7 @@ public interface CartDao {
 	
 	public void calculateOrderTotal();
 	
-	public double getOrderTotal();
+	public float getOrderTotal();
 
 	public boolean checkout(Reservation res);
 }

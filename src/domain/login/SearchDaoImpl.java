@@ -54,6 +54,8 @@ public class SearchDaoImpl implements SearchDao{
 	}
 		
 		String q3 = q2;
+		if(events == null && price == null && date ==null)
+			q3 = "select * from events";
 		if (events==null && price==null && date!=null)
 			q3 = "select * from events ORDER BY EventDate ASC";
 		else if ( date !=null)

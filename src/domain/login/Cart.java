@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Cart {
 	public List<Event> eventsSelected = new ArrayList<>();
-	public double totalCost;
+	public float totalCost;
 	
 	public List<Event> getEventsSelected() {
 		return eventsSelected;
@@ -13,10 +13,10 @@ public class Cart {
 	public void setEventsSelected(List<Event> eventsSelected) {
 		this.eventsSelected = eventsSelected;
 	}
-	public double getTotalCost() {
+	public float getTotalCost() {
 		return totalCost;
 	}
-	public void setTotalCost(double totalCost) {
+	public void setTotalCost(float totalCost) {
 		this.totalCost = totalCost;
 	}
 	

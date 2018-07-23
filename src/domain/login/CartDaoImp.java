@@ -1,5 +1,6 @@
 package domain.login;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,18 +50,21 @@ public class CartDaoImp implements CartDao{
 
 	@Override
 	public void calculateOrderTotal() {
-		double total = 0;
+		float total = 0;
 		if(cart.getEventsSelected().size()!=0){
 			for(Event event: cart.getEventsSelected()){
 				total = total + event.getPrice();
 			}
 		}
+       // BigDecimal bd = new BigDecimal(Float.toString(total));
+       // bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+       // return bd.floatValue();
 		cart.setTotalCost(total);
 		
 	}
 
 	@Override
-	public double getOrderTotal() {
+	public float getOrderTotal() {
 		return cart.getTotalCost();
 	}
 

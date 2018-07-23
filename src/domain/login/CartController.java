@@ -121,12 +121,7 @@ public class CartController extends HttpServlet{
 					ArrayList<Event> copySelectedReg = new ArrayList<>(eventSelected);
 					for(int regId : existingReservation.keySet()){
 						List<Event> eventsRegistered = existingReservation.get(regId).getCart().getEventsSelected();
-						for(Event e : eventsRegistered){
-							System.out.println("registered :" + e.getTopic());
-						}
-						for(Event e1 : copySelectedReg){
-							System.out.println("new unmodified: "+e1.getTopic());
-						}
+
 						//copySelectedReg.removeAll(eventsRegistered);
 						for(Event regi : eventsRegistered){
 							Iterator<Event> j = copySelectedReg.iterator();
@@ -149,6 +144,8 @@ public class CartController extends HttpServlet{
 
 					if(status){
 						cart.setEventsSelected(new ArrayList<Event>()); 
+						cart.setTotalCost(0);
+						
 						request.setAttribute("message", "Hello"+" " + studentLoggedIn.getEmail());
 						request.getRequestDispatcher("thankyou.jsp").forward(request, response);
 					}
