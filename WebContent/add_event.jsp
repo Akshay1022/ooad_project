@@ -75,7 +75,7 @@ User=<%=user %>
 	EventTime: <input type="text" name="time" id="time"><br>
 	Description: <input type="text" name="desc" id="desc"><br>
 	
-	<input type="submit" name="submit" value="add_event"><br>
+	<input type="submit" name="submit" id="add_event" value="add_event"><br>
 	
 	
 </form>

@@ -118,7 +118,7 @@
 	<label for="inputPassword" class="sr-only">Password</label>
 	<input type="password" name="password" id="password" placeholder="Password" required><br>
 	</br>
-	<input type="submit" name="submit" value="login"><br>
+	<input type="submit" name="submit" value="login" id="login"><br>
 	
 	</center>
 	

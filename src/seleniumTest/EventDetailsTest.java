@@ -2,6 +2,7 @@ package seleniumTest;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,11 @@ public class EventDetailsTest {
 		String topicReceived = eventDisplayed.getAttribute("value");
 		Assert.assertEquals(topicSelected, topicReceived);
 		
+	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
 	}
 	
 	

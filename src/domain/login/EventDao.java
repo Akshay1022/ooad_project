@@ -13,6 +13,8 @@ public interface EventDao {
 	
 	public Event getEvent(String id);
 	
+	public int cancelEvent(String id);
+	
 	public Event getRequiredEvent(String eventTopic);
 
 }

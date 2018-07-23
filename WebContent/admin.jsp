@@ -19,7 +19,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Login Success Page</title>
+<title>Admin Login Page</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -61,9 +61,11 @@ for(Cookie cookie : cookies){
 <br>
 <h4>User=<%=user %></h4>
 <br>
-<h4><a href="add_event.jsp">Add Event</a></h4>
+<h4><a href="add_event.jsp" id="addevent">Add Event</a></h4>
 <br>
 <h4><a href="edit_event.jsp">Edit Event</a></h4>
+<br>
+<h4><a href="cancel_event.jsp">Cancel Event</a></h4>
 <br>
 <h4><a href="logout.jsp">Logout</a></h4>
 </center>

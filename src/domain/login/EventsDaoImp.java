@@ -154,7 +154,27 @@ public class EventsDaoImp implements EventDao{
 			return status;
 	    	
 	    }
+	
+	
+	@Override
+	public int cancelEvent(String id) {
+		int status = 0;
+		try{
+			conn = db.getConnection();
+			ps =conn.prepareStatement("delete from Events where EventId = ?");
+			ps.setString(1, id);
+			status = ps.executeUpdate();
+			
+			conn.close();
+			return status;
+		}catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}
 		
+		
+	}
+	
 	}
 
 

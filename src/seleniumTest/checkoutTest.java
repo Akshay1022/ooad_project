@@ -2,6 +2,7 @@ package seleniumTest;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,5 +42,10 @@ public class checkoutTest {
 		checkout.click();
 		Thread.sleep(1000);
 		Assert.assertEquals("Thank You Page", driver.getTitle());
+	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
 	}
 }
