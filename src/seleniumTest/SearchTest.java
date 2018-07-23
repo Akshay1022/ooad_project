@@ -40,5 +40,10 @@ public class SearchTest {
 
 		
 	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
+	}
 
 }

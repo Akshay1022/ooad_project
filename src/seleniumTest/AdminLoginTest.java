@@ -1,23 +1,17 @@
 package seleniumTest;
 
-import static org.junit.Assert.*;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginTest {
-
+public class AdminLoginTest {
+	
 	WebDriver driver;
 	@Before
 	public void openLoginPage() throws InterruptedException{
-		System.setProperty("webdriver.chrome.driver","chromedriver");
+		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get("http://localhost:8080/ooad_basic/login.jsp");
+		driver.get("http://localhost:8081/ooad_basic/login.jsp");
 		Assert.assertEquals("Login Page", driver.getTitle());
 		
 	}
@@ -26,13 +20,14 @@ public class LoginTest {
 	public void LoginSucessTest() throws InterruptedException{
 		WebElement email = driver.findElement(By.id("email"));
 		WebElement password = driver.findElement(By.id("password"));
-		WebElement submit = driver.findElement(By.name("submit"));
-		email.sendKeys("giridhar@gmail.com");
-		password.sendKeys("1234");
-		Thread.sleep(5000);
+		WebElement submit = driver.findElement(By.id("login"));
+		email.sendKeys("root");
+		Thread.sleep(3000);
+		password.sendKeys("akshay");
+		Thread.sleep(3000);
 		submit.click();
 		Thread.sleep(5000);
-		Assert.assertEquals("Welcome Page", driver.getTitle());
+		Assert.assertEquals("Admin Login Page", driver.getTitle());
 		
 	}
 	
@@ -40,10 +35,11 @@ public class LoginTest {
 	public void LoginFailTest() throws InterruptedException{
 		WebElement email = driver.findElement(By.id("email"));
 		WebElement password = driver.findElement(By.id("password"));
-		WebElement submit = driver.findElement(By.name("submit"));
-		email.sendKeys("giridhar@gmail.com");
+		WebElement submit = driver.findElement(By.id("login"));
+		email.sendKeys("root");
+		Thread.sleep(3000);
 		password.sendKeys("12345678");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		submit.click();
 		Thread.sleep(5000);
 		Assert.assertEquals("Login Page", driver.getTitle());
@@ -51,10 +47,10 @@ public class LoginTest {
 	}
 	
 	
+	
 	@After
 	public void closePage(){
 	driver.quit();
 	}
-	
 
 }

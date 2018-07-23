@@ -61,5 +61,10 @@ public class CancelReservationTest {
 		}
 		Assert.assertNotEquals(true, flag);
 	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
+	}
 
 }

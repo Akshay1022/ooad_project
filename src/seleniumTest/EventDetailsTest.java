@@ -39,6 +39,11 @@ public class EventDetailsTest {
 		Assert.assertEquals(topicSelected, topicReceived);
 		
 	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
+	}
 	
 	
 

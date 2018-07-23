@@ -42,4 +42,9 @@ public class checkoutTest {
 		Thread.sleep(1000);
 		Assert.assertEquals("Thank You Page", driver.getTitle());
 	}
+    
+    @After
+	public void closePage(){
+	driver.quit();
+	}
 }

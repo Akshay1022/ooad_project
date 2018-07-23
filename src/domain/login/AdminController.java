@@ -52,10 +52,16 @@ public class AdminController extends HttpServlet{
 		
     	java.sql.Date sqlStartDate = new java.sql.Date(date.getTime()); 
     	Event eventobject = new Event(0,request.getParameter("title"),request.getParameter("type"),sqlStartDate,request.getParameter("loc"),Float.parseFloat(request.getParameter("price")),request.getParameter("time"),request.getParameter("desc") );
-    	eventModifier.addEvent(eventobject);
+    	int status = eventModifier.addEvent(eventobject);
     //	addEvents(ae);
     //	request.getRequestDispatcher("admin.jsp");
-    	response.sendRedirect("admin.jsp");
+    //	response.sendRedirect("admin.jsp");
+    	
+    	request.setAttribute("status", status);
+    	
+		request.getRequestDispatcher("addevent_result.jsp").forward(request, response);
+    	
+    	
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,6 +103,22 @@ public class AdminController extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    }
+    	else if(submitType.equals("cancel_event")){
+    	
+    	EventDao eventModifier = new EventsDaoImp();
+    	
+    	
+    	int status = eventModifier.cancelEvent(request.getParameter("id"));
+    	
+    	
+    	request.setAttribute("status", status);
+    	
+		request.getRequestDispatcher("cancel_result.jsp").forward(request, response);
+    	
+    	
+		
     	
     }
     
