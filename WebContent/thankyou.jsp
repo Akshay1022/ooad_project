@@ -71,7 +71,7 @@ alert(type.value);
 	<%
 out.println("<div class=\"jumbotron text-xs-center\">");
 out.println("  <h1 class=\"display-3\">Thank You!</h1>");
-out.println("  <p class=\"lead\"><strong>Please check your email</strong> for confirmation.</p>");
+out.println("  <p class=\"lead\"><strong>Please check your reservations</strong> for further details.</p>");
 //out.println("  <hr>");
 out.println("</div>");
 %>
@@ -84,7 +84,7 @@ out.println("</div>");
 
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark fixed-bottom">
+	<footer class="py-2 bg-dark fixed-bottom">
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Group:5</p>
 	</div>

@@ -85,12 +85,12 @@ alert(type.value);
 	<input type="hidden" name="price" value="${selectedEventId.price}">
 	<input type="hidden" name="eventTime" value="${selectedEventId.eventTime}">
 	<input type="hidden" name="description" value="${selectedEventId.description}">
-	<input type="submit" value="Add to cart" name="mode">
+	<input type="submit" id = "addCart" value="Add to cart" name="mode">
 	</form>
 
 
 	<!-- Footer -->
-    <footer class="py-5 bg-dark fixed-bottom">
+    <footer class="py-2 bg-dark fixed-bottom">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Group:5</p>
       </div>
@@ -104,45 +104,3 @@ alert(type.value);
 
 </body>
 </html>
-
-
-<!-- <table>
-			<thead>
-				<tr>
-					<th>EventId</th>
-					<th>Topic</th>
-					<th>EventType</th>
-					<th>EventDate</th>
-					<th>Location</th>
-					<th>Price</th>
-					<th>EventTime</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${eventDetails.eventId}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.topic}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.eventType}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.eventDate}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.location}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.price}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.eventTime}</td>
-				</tr>
-				<tr>
-					<td>${eventDetails.description}</td>
-				</tr>
-			</tbody>
-		</table> -->

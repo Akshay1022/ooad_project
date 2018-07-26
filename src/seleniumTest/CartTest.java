@@ -39,7 +39,7 @@ public class CartTest {
 	
 	@Test
 	public void addToCartTest() throws InterruptedException{
-		WebElement addToCart = driver.findElement(By.name("mode"));
+		WebElement addToCart = driver.findElement(By.id("addCart"));
 		addToCart.click();
 		Thread.sleep(5000);
 		Assert.assertEquals("Cart", driver.getTitle());

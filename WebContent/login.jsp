@@ -126,7 +126,7 @@
 	
 	
 	
-	<footer class="py-5 bg-dark fixed-bottom">
+	<footer class="py-2 bg-dark fixed-bottom">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Group:5</p>
      
