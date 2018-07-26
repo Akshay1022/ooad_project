@@ -9,9 +9,9 @@ public class AdminLoginTest {
 	WebDriver driver;
 	@Before
 	public void openLoginPage() throws InterruptedException{
-		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","chromedriver");
 		driver = new ChromeDriver();
-		driver.get("http://localhost:8081/ooad_basic/login.jsp");
+		driver.get("http://localhost:8080/ooad_basic/login.jsp");
 		Assert.assertEquals("Login Page", driver.getTitle());
 		
 	}
@@ -22,11 +22,11 @@ public class AdminLoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement submit = driver.findElement(By.id("login"));
 		email.sendKeys("root");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		password.sendKeys("akshay");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		submit.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Assert.assertEquals("Admin Login Page", driver.getTitle());
 		
 	}
@@ -37,11 +37,11 @@ public class AdminLoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement submit = driver.findElement(By.id("login"));
 		email.sendKeys("root");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		password.sendKeys("12345678");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		submit.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Assert.assertEquals("Login Page", driver.getTitle());
 		
 	}

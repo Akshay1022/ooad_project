@@ -25,7 +25,7 @@ public class EventDetailsTest {
 		WebElement submit = driver.findElement(By.name("submit"));
 		email.sendKeys("giridhar@gmail.com");
 		password.sendKeys("1234");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		submit.click();
 	}
 	

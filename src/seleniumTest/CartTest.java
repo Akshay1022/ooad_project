@@ -30,7 +30,7 @@ public class CartTest {
 		WebElement submit = driver.findElement(By.name("submit"));
 		email.sendKeys("giridhar@gmail.com");
 		password.sendKeys("1234");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		submit.click();
 		WebElement eventSelected = driver.findElement(By.id("event1"));
 		topicSelected = eventSelected.getText();
@@ -41,7 +41,7 @@ public class CartTest {
 	public void addToCartTest() throws InterruptedException{
 		WebElement addToCart = driver.findElement(By.id("addCart"));
 		addToCart.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Assert.assertEquals("Cart", driver.getTitle());
 		List<WebElement> cartEvents = driver.findElements(By.name("eventsInCart"));
 		Iterator i = cartEvents.iterator();
@@ -59,7 +59,7 @@ public class CartTest {
 	public void removeFromCartTest() throws InterruptedException{
 		WebElement addToCart = driver.findElement(By.name("mode"));
 		addToCart.click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Assert.assertEquals("Cart", driver.getTitle());
 		WebElement eventToBeDeleted = driver.findElement(By.id("eventsInCart1"));
 		String eventToDelete = eventToBeDeleted.getText();

@@ -57,7 +57,7 @@ for(Cookie cookie : cookies){
 }
 %>
 <center>
-<h4>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h4>
+<h4>Hi <%=userName %>, Login successful.</h4>
 <br>
 User=<%=user %>
 <br>
